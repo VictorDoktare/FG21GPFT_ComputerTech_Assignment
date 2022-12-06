@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2978058155e79fe4c96d3943405cf643
+guid: c75fbab48f37249448172f9a7f19ac4a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_Player_Ship_L
+      name: spr_Enemy_GreenBoy_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,20 +113,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c9b617779ac9594584e5af8ab5bc36b
-      internalID: 3880314
+      spriteID: 807d5f5cf5d0ef542b3acbc2083c1790
+      internalID: -436759131
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Player_Ship_M
+      name: spr_Enemy_GreenBoy_1
       rect:
         serializedVersion: 2
         x: 16
@@ -134,20 +134,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5155773c17efd8e4bb925147aa124560
-      internalID: -714391755
+      spriteID: 5c5c88c96f5a3e946951dc24f894f962
+      internalID: 1492411254
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Player_Ship_R
+      name: spr_Enemy_GreenBoy_2
       rect:
         serializedVersion: 2
         x: 32
@@ -155,14 +155,77 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40200a3a2f968054fb35c5014f817acb
-      internalID: 1603438985
+      spriteID: c50cfd7f1d3dcab48a187b3d04104acb
+      internalID: -1414221955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Enemy_GreenBoy_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b03132da97e9f44098644c01f352238
+      internalID: 1947599109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Enemy_GreenBoy_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e5bf041d5357d14d927aa00128b8fca
+      internalID: 960425699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Enemy_GreenBoy_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c892f686b8819441b725148d5dbbbb9
+      internalID: -84464021
       vertices: []
       indices: 
       edges: []
@@ -170,7 +233,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: eae203a7ae16b8d4a8c5425af20d22bf
+    spriteID: 34cbc9e1ea27b424bbd2d7922e84395e
     internalID: 0
     vertices: []
     indices: 
@@ -178,9 +241,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_Player_Ship_L: 3880314
-      spr_Player_Ship_R: 1603438985
-      spr_Player_Ship_M: -714391755
+      spr_Enemy_GreenBoy_2: -1414221955
+      spr_Enemy_GreenBoy_4: 960425699
+      spr_Enemy_GreenBoy_5: -84464021
+      spr_Enemy_GreenBoy_0: -436759131
+      spr_Enemy_GreenBoy_3: 1947599109
+      spr_Enemy_GreenBoy_1: 1492411254
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
