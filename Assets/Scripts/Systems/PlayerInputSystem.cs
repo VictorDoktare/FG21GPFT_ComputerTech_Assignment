@@ -7,6 +7,7 @@ public partial class PlayerInputSystem : SystemBase
     protected override void OnUpdate()
     {
         Entities
+            .WithAll<PlayerTag>()
             .ForEach((ref Movement movement, in PlayerInput input) =>
             {
                 movement.Direction.x = 0;

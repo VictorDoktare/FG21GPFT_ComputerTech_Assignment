@@ -9,6 +9,7 @@ public partial class EnemyMovementSystem : SystemBase
         float deltaTime = Time.DeltaTime;
         
         Entities
+            .WithAll<EnemyTag>()
             .ForEach((ref Translation translation, in Movement movement) =>
             {
                 var m = movement.Direction.x;
