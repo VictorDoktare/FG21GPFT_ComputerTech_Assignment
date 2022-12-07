@@ -8,7 +8,7 @@ public partial class PlayerInputSystem : SystemBase
     {
         Entities
             .WithAll<PlayerTag>()
-            .ForEach((ref Movement movement, in PlayerInput input) =>
+            .ForEach((ref Velocity movement, in PlayerInput input) =>
             {
                 movement.Direction.x = 0;
                 movement.Direction.y = 0;

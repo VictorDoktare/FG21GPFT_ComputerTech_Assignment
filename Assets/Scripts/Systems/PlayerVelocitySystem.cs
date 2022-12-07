@@ -1,8 +1,9 @@
 using Unity.Entities;
 using Unity.Transforms;
+using UnityEngine;
 
 [AlwaysSynchronizeSystem]
-public partial class PlayerMovementSystem : SystemBase
+public partial class PlayerVelocitySystem : SystemBase
 {
     protected override void OnUpdate()
     {
@@ -10,9 +11,9 @@ public partial class PlayerMovementSystem : SystemBase
         
         Entities
             .WithAll<PlayerTag>()
-            .ForEach((ref Translation translation, in Movement movement) =>
+            .ForEach((ref Translation translation, in Velocity velocity) =>
             {
-                translation.Value.x += (movement.Direction.x * movement.Speed * deltaTime);
+                translation.Value.x += (velocity.Direction.x * velocity.Speed * deltaTime);
             }).ScheduleParallel();
     }
 }
