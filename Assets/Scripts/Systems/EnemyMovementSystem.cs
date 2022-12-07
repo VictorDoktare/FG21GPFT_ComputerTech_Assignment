@@ -10,12 +10,11 @@ public partial class EnemyMovementSystem : SystemBase
         
         Entities
             .WithAll<EnemyTag>()
-            .ForEach((ref Translation translation, in Movement movement) =>
+            .ForEach((ref Translation translation, ref Movement movement) =>
             {
-                var m = movement.Direction.x;
-                m += 1;
+                movement.Direction.y = -1;
                 
-                translation.Value.x += (movement.Speed * m * deltaTime);
+                translation.Value.y += (movement.Direction.y * movement.Speed * deltaTime);
             }).Schedule();
     }
 }

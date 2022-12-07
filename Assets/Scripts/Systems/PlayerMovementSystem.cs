@@ -12,7 +12,7 @@ public partial class PlayerMovementSystem : SystemBase
             .WithAll<PlayerTag>()
             .ForEach((ref Translation translation, in Movement movement) =>
             {
-                translation.Value.x += (movement.Speed * movement.Direction.x * deltaTime);
+                translation.Value.x += (movement.Direction.x * movement.Speed * deltaTime);
             }).ScheduleParallel();
     }
 }
