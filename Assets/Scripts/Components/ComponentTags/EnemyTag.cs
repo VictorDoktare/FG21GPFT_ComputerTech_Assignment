@@ -1,4 +1,7 @@
 using Unity.Entities;
 
-[GenerateAuthoringComponent]
-public struct EnemyTag : IComponentData { }
+namespace Components.ComponentTags
+{
+    [GenerateAuthoringComponent]
+    public struct EnemyTag : IComponentData { }
+}

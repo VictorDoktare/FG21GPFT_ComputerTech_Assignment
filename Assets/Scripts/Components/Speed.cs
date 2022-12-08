@@ -3,8 +3,8 @@ using Unity.Entities;
 namespace Components
 {
     [GenerateAuthoringComponent]
-    public struct Health : IComponentData
+    public struct Speed : IComponentData
     {
-        public int Value;
+        public float Value;
     }
 }
