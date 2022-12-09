@@ -1,13 +1,12 @@
 using Components;
 using Components.ComponentTags;
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
 namespace Systems
 {
-    public partial class PlayerWeaponSystem : SystemBase
+    public partial class ProjectileSpawnSystem : SystemBase
     {
         private BeginSimulationEntityCommandBufferSystem _beginSimECB;
         private Entity _projectile;
@@ -41,13 +40,28 @@ namespace Systems
             {
                 Entities
                     .WithAll<WeaponTag>()
-                    .ForEach((int entityInQueryIndex, in Translation translation, in LocalToWorld localToWorld) =>
+                    .ForEach((int entityInQueryIndex, in Translation translation, in LocalToWorld localToWorld,
+                        in Weapon weapon) =>
                     {
-                        var spawnedProjectileEntity = commandBuffer.Instantiate(entityInQueryIndex, projectile);
-                        var newPos = new Translation() { Value = localToWorld.Position};
-                        
-                        commandBuffer.SetComponent(entityInQueryIndex, spawnedProjectileEntity, newPos);
-                        
+                        //Start position for the first projectile if there is more then 1
+                        var newPos = (weapon.ProjectileAmount - 1) * (0.1f / 2);
+                        var setPos = new Translation() { Value = localToWorld.Position};
+                        for (int i = 0; i < weapon.ProjectileAmount; i++)
+                        {
+                            var spawnedProjectileEntity = commandBuffer.Instantiate(entityInQueryIndex, projectile);
+
+                            if (i == 0)
+                            {
+                                setPos.Value.x -= newPos;
+                            }
+                            else
+                            {
+                                setPos.Value.x += 0.1f;
+                            }
+                            
+                            commandBuffer.SetComponent(entityInQueryIndex, spawnedProjectileEntity, setPos);
+                        }
+
                     }).ScheduleParallel();
                 
                 _fireDelay = 1;

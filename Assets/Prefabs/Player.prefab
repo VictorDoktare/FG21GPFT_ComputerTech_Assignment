@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireRate: 2
-  ProjectileAmount: 2
+  ProjectileAmount: 1
 --- !u!114 &6925557496415853576
 MonoBehaviour:
   m_ObjectHideFlags: 0
