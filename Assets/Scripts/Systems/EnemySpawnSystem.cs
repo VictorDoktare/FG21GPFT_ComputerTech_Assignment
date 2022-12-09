@@ -10,7 +10,8 @@ namespace Systems
     {
         private BeginSimulationEntityCommandBufferSystem _beginSimECB;
         private Entity _enemy;
-        private float _timer = 1;
+        private float _startTime = 2f;
+        private float _spawnTimer = 2f;
         
         protected override void OnCreate()
         {
@@ -33,8 +34,14 @@ namespace Systems
             var xPosition = new float[]{-2, -1, 0, 1, 2};
             var setPos = new Translation() { Value = new float3(0, 10, 0)};
 
-            _timer -= deltaTime * 1;
-            if (_timer <= 0)
+            //Faster spawn the longer game proceeds
+            if (_startTime >= 0.2)
+            {
+                _startTime -= deltaTime * 0.01f;
+            }
+            
+            _spawnTimer -= deltaTime * 1f;
+            if (_spawnTimer <= 0)
             {
                 setPos.Value.x -= xPosition[Random.Range(0, 5)];
                 
@@ -47,7 +54,7 @@ namespace Systems
 
                     }).ScheduleParallel();
 
-                _timer = 1;
+                _spawnTimer = _startTime;
                 _beginSimECB.AddJobHandleForProducer(Dependency);
             }
         }
