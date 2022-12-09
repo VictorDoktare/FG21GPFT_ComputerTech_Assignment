@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Systems
 {
     [AlwaysSynchronizeSystem]
-    public partial class EnemySystem : SystemBase
+    public partial class EnemyMovementSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -16,13 +16,11 @@ namespace Systems
         
             Entities
                 .WithAll<EnemyTag>()
-                .ForEach((ref Position position, ref Direction direction, ref Translation translation,
-                    in Speed speed, in Boundary boundary, in MovePattern movePattern) =>
+                .ForEach((ref Direction direction, ref Translation translation, in Speed speed,
+                    in MovePattern movePattern) =>
                 {
-                    //Position
-                    position.Value.xy = translation.Value.xy;
-
-                    //Mvement patterns & Velocity
+                    
+                    //Movement patterns & Velocity
                     if (movePattern.Pattern == MovePattern.Patterns.Wave)
                     {
                         direction.Value.x = Mathf.Cos(time * (speed.Value * movePattern.Frequency));

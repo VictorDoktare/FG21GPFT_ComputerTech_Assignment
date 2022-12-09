@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Systems
 {
-    public partial class PlayerSystem : SystemBase
+    public partial class PlayerMovementSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -16,12 +16,8 @@ namespace Systems
         
             Entities
                 .WithAll<PlayerTag>()
-                .ForEach((ref Position position, ref Direction direction, ref Translation translation,
-                    in Speed speed, in Boundary boundary) =>
+                .ForEach((ref Direction direction, ref Translation translation, in Speed speed) =>
                 {
-                    //Position
-                    position.Value.xy = translation.Value.xy;
-
                     //Velocity
                     direction.Value.xy = axisInput.xy;
                     translation.Value.xy += direction.Value * speed.Value * deltaTime;
