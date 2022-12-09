@@ -16,8 +16,13 @@ namespace Systems
         
             Entities
                 .WithAll<PlayerTag>()
-                .ForEach((ref Direction direction, ref Translation translation, in Speed speed) =>
+                .ForEach((ref Direction direction, ref Translation translation, in Boundary boundary, 
+                    in Speed speed) =>
                 {
+                    //Lazy way to keep player constrained within the level
+                    translation.Value.x = Mathf.Clamp(translation.Value.x, -2.85f, 2.85f);
+                    translation.Value.y = Mathf.Clamp(translation.Value.y, 0.25f, 9.15f);
+                    
                     //Velocity
                     direction.Value.xy = axisInput.xy;
                     translation.Value.xy += direction.Value * speed.Value * deltaTime;
