@@ -1,4 +1,5 @@
 using Unity.Entities;
+using Unity.Mathematics;
 
 namespace Components
 {
@@ -6,6 +7,6 @@ namespace Components
     public struct Velocity : IComponentData
     {
         public float Speed;
-        public float Direction;
+        public float2 Direction;
     }
 }
