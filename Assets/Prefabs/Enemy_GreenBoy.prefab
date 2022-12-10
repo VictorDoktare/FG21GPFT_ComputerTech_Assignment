@@ -10,12 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6552358714528185545}
   - component: {fileID: 6133811657785625862}
-  - component: {fileID: 459580828789411168}
-  - component: {fileID: 3031254712790486061}
-  - component: {fileID: 4202947524533138980}
-  - component: {fileID: 4802312711970798570}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy_GreenBoy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6552358714528185546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -88,57 +84,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &459580828789411168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6552358714528185546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2c491a55a7ec6e41a960ba4769fba95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3031254712790486061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6552358714528185546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b814d23cbeb36e4c977cb0b45d3c55e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value:
-    x: 0
-    y: -1
---- !u!114 &4202947524533138980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6552358714528185546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a42ab0342d3770f44960b23bb53a170b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 2
---- !u!114 &4802312711970798570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6552358714528185546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8569d6122cf29fa4d9d53da8e15efb6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pattern: 1
-  Frequency: 2

@@ -21,7 +21,8 @@ namespace Systems
             public float2 SetVelocity(in PlayerInput playerInput, ref Velocity velocity)
             {
                 velocity.Direction.xy = playerInput.MoveInput;
-                return velocity.Direction * velocity.Speed * _deltaTime;
+                var normalizedDirection = new Vector2(velocity.Direction.x, velocity.Direction.y).normalized;
+                return normalizedDirection * velocity.Speed * _deltaTime;
             }
             public float3 SetMouseToWorld()
             {
