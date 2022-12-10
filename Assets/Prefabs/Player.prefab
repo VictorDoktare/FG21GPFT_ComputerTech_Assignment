@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 5309885778611056353}
   - component: {fileID: 5584900507656592579}
   - component: {fileID: 4854631696227321161}
+  - component: {fileID: -1312937279469753404}
+  - component: {fileID: 4453314928206102838}
+  - component: {fileID: 1360217909297123513}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -131,3 +134,49 @@ MonoBehaviour:
   Direction:
     x: 0
     y: 0
+--- !u!114 &-1312937279469753404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4854631696936042787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31579977474d065408ede39e57e6063a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectileSpawnPos:
+    x: 0
+    y: 0
+    z: 0
+  NumberOfProjectiles: 0
+  ProjectileSpreadRadius: 0
+  FireRate: 1
+  Timer: 1
+--- !u!114 &4453314928206102838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4854631696936042787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa64eb98c427cc47b12f6f3ffe80fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 1
+--- !u!114 &1360217909297123513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4854631696936042787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 214cf6be5a5501a4aa123e70e6868b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ref: {fileID: 4341720797253378331, guid: fec3798fe16d73b49aad9f140a31c531, type: 3}

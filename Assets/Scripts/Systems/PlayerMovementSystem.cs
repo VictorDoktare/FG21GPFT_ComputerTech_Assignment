@@ -9,7 +9,7 @@ namespace Systems
 {
     public partial class PlayerMovementSystem : SystemBase
     {
-        public readonly struct OperationData
+        private readonly struct OperationData
         {
             private readonly float _deltaTime;
             private readonly float3 _mousePosition;
