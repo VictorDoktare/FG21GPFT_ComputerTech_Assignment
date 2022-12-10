@@ -54,7 +54,7 @@ namespace Systems
                     //translation.Value.y = Mathf.Clamp(translation.Value.y, 0.25f, 9.15f);
                     
                     //Player Velocity
-                    translation.Value.xy += operation.SetVelocity(in playerInput, ref velocity);;
+                    translation.Value.xy += operation.SetVelocity(in playerInput, ref velocity);
                     
                     //Player Rotation
                     rotation.Value = operation.SetRotation(worldMousePosition, ref translation);

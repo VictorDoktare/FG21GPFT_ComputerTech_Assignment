@@ -27,23 +27,6 @@ namespace Systems
                 }
                 return false;
             }
-            public Entity SpawnProjectile(in EntityCommandBuffer.ParallelWriter SimECB, int queryIndex,
-                in PrefabEntityReference entityRef)
-            {
-                var newProjectileEntity = SimECB.Instantiate(queryIndex, entityRef.Ref);
-                return newProjectileEntity;
-            }
-            public void SetProjectilePosition(in EntityCommandBuffer.ParallelWriter SimECB, int queryIndex,
-                in Entity entity,in LocalToWorld localToWorld)
-            {
-                var position = new Translation() { Value = localToWorld.Position };
-                SimECB.SetComponent(queryIndex, entity, position);
-            }
-            public void SetProjectileRotation(in EntityCommandBuffer.ParallelWriter SimECB, int queryIndex,
-                in Entity entity,in LocalToWorld localToWorld)
-            {
-                //Todo Rotate Projectile
-            }
         }
 
         protected override void OnCreate()
@@ -64,8 +47,15 @@ namespace Systems
                 {
                     if (operation.CanFireProjectile(playerInput, ref weapon, ref timer))
                     {
-                        var projectile = operation.SpawnProjectile(in beginSimECB, entityInQueryIndex, in prefabEntity);
-                        operation.SetProjectilePosition(in beginSimECB, entityInQueryIndex, in projectile, in localToWorld);
+                        //Spawn X number of projectiles
+                        var angleStep = 360f / weapon.NumberOfProjectiles;
+                        
+                        //Create projectile entity
+                        var newProjectileEntity = beginSimECB.Instantiate(entityInQueryIndex, prefabEntity.Ref);
+
+                        var spawnPos = new Translation() { Value = localToWorld.Position };
+                        beginSimECB.SetComponent(entityInQueryIndex, newProjectileEntity, spawnPos);
+                        
                     }
 
                 }).ScheduleParallel();
