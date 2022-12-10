@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2978058155e79fe4c96d3943405cf643
+guid: 19873804fa72220438811b636b7bcc4d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_Player_Ship_L
+      name: spr_PowerUp_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,20 +113,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c9b617779ac9594584e5af8ab5bc36b
-      internalID: 3880314
+      spriteID: f1bfe7b3bcd41354d9b0c139f436e12c
+      internalID: 1532436718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Player_Ship_M
+      name: spr_PowerUp_1
       rect:
         serializedVersion: 2
         x: 16
@@ -134,20 +134,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5155773c17efd8e4bb925147aa124560
-      internalID: -714391755
+      spriteID: 92a4a130a614e7d45ba4ac5fe1731eac
+      internalID: -247498992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Player_Ship_R
+      name: spr_PowerUp_2
       rect:
         serializedVersion: 2
         x: 32
@@ -155,14 +155,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40200a3a2f968054fb35c5014f817acb
-      internalID: 1603438985
+      spriteID: 99fc59687cdfa0e47baa13d3df22e0fc
+      internalID: -777019596
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: eae203a7ae16b8d4a8c5425af20d22bf
+    spriteID: 22deaf6d331a7204ca0e3d3155a02b6c
     internalID: 0
     vertices: []
     indices: 
@@ -178,9 +178,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_Player_Ship_L: 3880314
-      spr_Player_Ship_R: 1603438985
-      spr_Player_Ship_M: -714391755
+      spr_PowerUp_0: 1532436718
+      spr_PowerUp_1: -247498992
+      spr_PowerUp_2: -777019596
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
