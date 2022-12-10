@@ -2,7 +2,6 @@ using Components;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Systems

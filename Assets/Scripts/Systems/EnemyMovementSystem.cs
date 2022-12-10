@@ -23,7 +23,8 @@ namespace Systems
             var time = UnityEngine.Time.time;
         
             Entities
-                .WithAll<EnemyTag>()
+                .WithNone<PlayerTag>()
+                //.WithAll<EnemyTag>()
                 .ForEach((ref Direction direction, ref Translation translation, in Speed speed,
                     in MovePattern movePattern, in Entity entity) =>
                 {
