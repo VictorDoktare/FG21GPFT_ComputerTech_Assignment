@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Systems
 {
-    public partial class ProjectileSpawnSystem : SystemBase
+    public partial class PlayerWeaponShootSystem : SystemBase
     {
         private BeginSimulationEntityCommandBufferSystem _beginSimECB;
         private Entity _projectile;

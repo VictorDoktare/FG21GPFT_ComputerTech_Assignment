@@ -2,6 +2,7 @@ using Components;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Systems
@@ -12,7 +13,7 @@ namespace Systems
         private Entity _enemy;
         private float _startTime = 2f;
         private float _spawnTimer = 2f;
-        
+
         protected override void OnCreate()
         {
             _beginSimECB = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
@@ -31,7 +32,6 @@ namespace Systems
             
             var commandBuffer = _beginSimECB.CreateCommandBuffer().AsParallelWriter();
             var enemy = _enemy;
-            var xPosition = new float[]{-2, -1, 0, 1, 2};
             var setPos = new Translation() { Value = new float3(0, 10, 0)};
 
             //Faster spawn the longer game proceeds
@@ -41,19 +41,31 @@ namespace Systems
             }
             
             _spawnTimer -= deltaTime * 1f;
+            
+            //var randomPos = Random.Range(-2, 3);
+            //var randomSpawnAmount = Random.Range(1, 5);
+            
+            //setPos.Value.x -= randomPos;
+            
             if (_spawnTimer <= 0)
             {
-                setPos.Value.x -= xPosition[Random.Range(0, 5)];
-                
-                Entities
-                    .WithAll<EnemySpawnerTag>()
-                    .ForEach((int entityInQueryIndex, in Translation translation) =>
-                    {
-                        var spawnedEnemyEntity = commandBuffer.Instantiate(entityInQueryIndex, enemy);
-                        commandBuffer.SetComponent(entityInQueryIndex, spawnedEnemyEntity, setPos);
+                var randomSpawnAmount = Random.Range(1, 5);
 
-                    }).ScheduleParallel();
-
+                for (int i = 0; i < randomSpawnAmount; i++)
+                {
+                    var randomPos = Random.Range(-2, 2);
+                    
+                    Entities
+                        .WithAll<EnemySpawnerTag>()
+                        .ForEach((int entityInQueryIndex, in Translation translation) =>
+                        {
+                            setPos.Value.x = randomPos;
+                            var spawnedEnemyEntity = commandBuffer.Instantiate(entityInQueryIndex, enemy);
+                            commandBuffer.SetComponent(entityInQueryIndex, spawnedEnemyEntity, setPos);
+                            
+                        }).ScheduleParallel();
+   
+                }
                 _spawnTimer = _startTime;
                 _beginSimECB.AddJobHandleForProducer(Dependency);
             }

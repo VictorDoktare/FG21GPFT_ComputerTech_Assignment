@@ -5,7 +5,6 @@ using Unity.Transforms;
 
 namespace Systems
 {
-    [AlwaysSynchronizeSystem]
     public partial class ProjectileMovementSystem : SystemBase
     {
         private EndSimulationEntityCommandBufferSystem _endSimECB;

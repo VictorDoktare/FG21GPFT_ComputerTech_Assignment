@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Systems
 {
-    [AlwaysSynchronizeSystem]
+    
     public partial class EnemyMovementSystem : SystemBase
     {
         private EndSimulationEntityCommandBufferSystem _endSimECB;
@@ -34,12 +34,12 @@ namespace Systems
                         translation.Value.x += (direction.Value.x * speed.Value * deltaTime);
                     }
                     
-                    translation.Value.y += direction.Value.y -1 * speed.Value * deltaTime;
+                    translation.Value.y += direction.Value.y * speed.Value * deltaTime;
                     
                     //Lazy way to destroy enemy when outside of bounds
                     if (translation.Value.y <= -1)
                     {
-                        commandBuffer.DestroyEntity(1, entity);
+                        commandBuffer.DestroyEntity(0, entity);
                         return;
                     }
 
