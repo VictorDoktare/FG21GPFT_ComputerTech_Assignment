@@ -1,5 +1,5 @@
 using Components;
-using Components.ComponentTags;
+using Components.Tags;
 using Unity.Entities;
 using Unity.Transforms;
 

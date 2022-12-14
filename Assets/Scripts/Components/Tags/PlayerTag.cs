@@ -1,6 +1,6 @@
 using Unity.Entities;
 
-namespace Components.ComponentTags
+namespace Components.Tags
 {
     [GenerateAuthoringComponent]
     public struct PlayerTag : IComponentData { }
