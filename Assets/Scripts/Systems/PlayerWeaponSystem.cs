@@ -21,29 +21,32 @@ namespace Systems
             var beginSimECB = _beginSimECB.CreateCommandBuffer().AsParallelWriter();
 
             Entities
+                .WithoutBurst()
                 .WithAll<PlayerTag>()
                 .ForEach((int entityInQueryIndex, ref Weapon weapon, ref Timer timer, in PlayerInput playerInput,
-                    in LocalToWorld localToWorld, in Rotation rotation, in PrefabEntityReference prefabEntity) =>
+                    in LocalToWorld localToWorld, in PrefabEntityReference prefabEntity) =>
                 {
 
                     //Spawn projectiles based on a time delay
                     var fireTimer = operation.CountTime(ref timer, weapon.FireRate);
                     if (fireTimer <= 0 && playerInput.FireInput)
                     {
-                        //Spawn X number of projectiles
-                        var angleStep = 360f / weapon.NumberOfProjectiles;
-
-                        //Instantiate projectile entity
-                        var spawnPos = new Translation() { Value = localToWorld.Position };
-                        var spawnRot = rotation;
                         
-                        var newProjectileEntity = beginSimECB.Instantiate(entityInQueryIndex, prefabEntity.Ref);
-                        beginSimECB.SetComponent(entityInQueryIndex, newProjectileEntity, spawnPos);
-                        beginSimECB.SetComponent(entityInQueryIndex, newProjectileEntity, spawnRot);
-
+                        var spawnPos = new Translation() { Value = localToWorld.Position };
+                        var spawnRot = new Rotation() { Value = localToWorld.Rotation };
+                        
+                        for (int i = 0; i < weapon.NumberOfProjectiles - 1; i++)
+                        {
+                            //Instantiate projectile entity
+                            var newProjectileEntity = beginSimECB.Instantiate(entityInQueryIndex, prefabEntity.Ref);
+                            
+                            beginSimECB.SetComponent(entityInQueryIndex, newProjectileEntity, spawnPos);
+                            beginSimECB.SetComponent(entityInQueryIndex, newProjectileEntity, spawnRot);
+                        }
+                        
                         timer.Value = 1;
                     }
-                }).ScheduleParallel();
+                }).Run();
             
             _beginSimECB.AddJobHandleForProducer(Dependency);
         }
