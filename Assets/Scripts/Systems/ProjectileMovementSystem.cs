@@ -13,10 +13,10 @@ namespace Systems
 
             Entities
                 .WithAll<ProjectileTag>()
-                .ForEach((ref Translation translation, ref Velocity velocity, in LocalToWorld worldToLocal) =>
+                .ForEach((ref Translation translation, ref Velocity velocity, in LocalToWorld localToWorld) =>
                 {
                     //Move projectile in forward facing direction
-                    velocity.Direction = worldToLocal.Up.xy;
+                    velocity.Direction = localToWorld.Up.xy;
                     translation.Value.xy += operation.SetVelocity(ref velocity);
                     
                 }).ScheduleParallel();

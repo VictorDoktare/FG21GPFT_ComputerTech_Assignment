@@ -34,10 +34,10 @@ namespace Systems
                         var angleStep = 360f / weapon.NumberOfProjectiles;
 
                         //Instantiate projectile entity
-                        var newProjectileEntity = beginSimECB.Instantiate(entityInQueryIndex, prefabEntity.Ref);
-                        //var spawnPos = new Translation() { Value = localToWorld.Position };
-                        var spawnPos = new Translation() { Value = localToWorld.Position.y +1f };
+                        var spawnPos = new Translation() { Value = localToWorld.Position };
                         var spawnRot = rotation;
+                        
+                        var newProjectileEntity = beginSimECB.Instantiate(entityInQueryIndex, prefabEntity.Ref);
                         beginSimECB.SetComponent(entityInQueryIndex, newProjectileEntity, spawnPos);
                         beginSimECB.SetComponent(entityInQueryIndex, newProjectileEntity, spawnRot);
 
