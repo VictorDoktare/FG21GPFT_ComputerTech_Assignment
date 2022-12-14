@@ -15,7 +15,6 @@ namespace Systems
             Entities
                 .ForEach((ref PlayerInput playerInput) =>
                 {
-                    
                     playerInput.MoveInput = inputAxis;
                     playerInput.FireInput = inputFire;
                     
