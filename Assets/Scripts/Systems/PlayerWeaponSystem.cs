@@ -9,26 +9,6 @@ namespace Systems
     {
         private BeginSimulationEntityCommandBufferSystem _beginSimECB;
 
-        private struct OperationData
-        {
-            private readonly float _deltaTime;
-
-            public OperationData(float deltaTime)
-            {
-                _deltaTime = deltaTime;
-            }
-            public bool CanFireProjectile(in PlayerInput playerInput, ref Weapon weapon, ref Timer timer)
-            {
-                timer.Value -= _deltaTime * weapon.FireRate;
-                if (playerInput.FireInput && timer.Value <= 0)
-                {
-                    timer.Value = 1;
-                    return true;
-                }
-                return false;
-            }
-        }
-
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -37,27 +17,32 @@ namespace Systems
 
         protected override void OnUpdate()
         {
-            var operation = new OperationData(Time.DeltaTime);
+            var operation = new Operation(Time.DeltaTime);
             var beginSimECB = _beginSimECB.CreateCommandBuffer().AsParallelWriter();
 
             Entities
                 .WithAll<PlayerTag>()
                 .ForEach((int entityInQueryIndex, ref Weapon weapon, ref Timer timer, in PlayerInput playerInput,
-                    in LocalToWorld localToWorld, in PrefabEntityReference prefabEntity) => 
+                    in LocalToWorld localToWorld, in Rotation rotation, in PrefabEntityReference prefabEntity) =>
                 {
-                    if (operation.CanFireProjectile(playerInput, ref weapon, ref timer))
+
+                    //Spawn projectiles based on a time delay
+                    var fireTimer = operation.CountTime(ref timer, weapon.FireRate);
+                    if (fireTimer <= 0 && playerInput.FireInput)
                     {
                         //Spawn X number of projectiles
                         var angleStep = 360f / weapon.NumberOfProjectiles;
-                        
-                        //Create projectile entity
+
+                        //Instantiate projectile entity
                         var newProjectileEntity = beginSimECB.Instantiate(entityInQueryIndex, prefabEntity.Ref);
-
-                        var spawnPos = new Translation() { Value = localToWorld.Position };
+                        //var spawnPos = new Translation() { Value = localToWorld.Position };
+                        var spawnPos = new Translation() { Value = localToWorld.Position.y +1f };
+                        var spawnRot = rotation;
                         beginSimECB.SetComponent(entityInQueryIndex, newProjectileEntity, spawnPos);
-                        
-                    }
+                        beginSimECB.SetComponent(entityInQueryIndex, newProjectileEntity, spawnRot);
 
+                        timer.Value = 1;
+                    }
                 }).ScheduleParallel();
             
             _beginSimECB.AddJobHandleForProducer(Dependency);

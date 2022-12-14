@@ -114,6 +114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03fc8b05e9bc5a4385ac0a945530035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MouseInput:
+    x: 0
+    y: 0
+    z: 0
   MoveInput:
     x: 0
     y: 0
@@ -152,8 +156,7 @@ MonoBehaviour:
     z: 0
   NumberOfProjectiles: 0
   ProjectileSpreadRadius: 0
-  FireRate: 1
-  Timer: 1
+  FireRate: 2
 --- !u!114 &4453314928206102838
 MonoBehaviour:
   m_ObjectHideFlags: 0
