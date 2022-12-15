@@ -14,7 +14,6 @@ public partial class PlayerWeaponSystem : SystemBase
     protected override void OnCreate()
     {
         _beginSimECB = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
-        
     }
 
     protected override void OnUpdate()
@@ -41,7 +40,6 @@ public partial class PlayerWeaponSystem : SystemBase
 
                 //Spawn projectiles based on a time delay
                 weapon.FireDelay -= deltaTime * weapon.FireRate;
-                Debug.Log(weapon.FireDelay);
                 if (weapon.FireDelay <= 0 && playerInput.FireInput)
                 {
                     var spawnPos = new Translation() { Value = localToWorld.Position };
