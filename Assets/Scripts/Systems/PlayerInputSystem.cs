@@ -1,6 +1,5 @@
 using Components;
 using Unity.Entities;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Systems
@@ -9,18 +8,19 @@ namespace Systems
     {
         protected override void OnUpdate()
         {
-            var mousePosition = new Operation().ScreenToWorldPos(Input.mousePosition);
-            var inputAxis = new float2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            var inputFire = Input.GetButton("Shoot");
-            
-            Entities
-                .ForEach((ref PlayerInput playerInput) =>
-                {
-                    playerInput.MouseInput = mousePosition;
-                    playerInput.MoveInput = inputAxis;
-                    playerInput.FireInput = inputFire;
-                    
-                }).ScheduleParallel();
+            if (Camera.main == null)
+                return;
+            var mouseInput = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            var fireInput = Input.GetButton("Shoot");
+
+            Entities.ForEach((ref PlayerInput playerInput) =>
+            {
+                playerInput.MouseInput = mouseInput;
+                playerInput.MoveInput = moveInput;
+                playerInput.FireInput = fireInput;
+                
+            }).Schedule();
         }
     }
 }

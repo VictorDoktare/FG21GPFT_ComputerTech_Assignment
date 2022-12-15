@@ -6,6 +6,6 @@ namespace Components
     public struct Velocity : IComponentData
     {
         public int Speed;
-        public Vector2 Direction;
+        public Vector3 Direction;
     }
 }

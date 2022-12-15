@@ -38,7 +38,7 @@ namespace Systems
             var randNumber = new Random((uint)Stopwatch.GetTimestamp());
             var commandBuffer = _beginSimECB.CreateCommandBuffer();
             var settings = GetSingleton<GameSettings>();
-            var projectilePrefab = _prefab;
+            var enemyPrefab = _prefab;
             float xPos = 0, yPos = 0;
 
             Job
@@ -74,7 +74,7 @@ namespace Systems
                         }
                         
                         var position = new Translation{Value = new float3(xPos,yPos,0)};
-                        var projectileEntity = commandBuffer.Instantiate(projectilePrefab);
+                        var projectileEntity = commandBuffer.Instantiate(enemyPrefab);
                         commandBuffer.SetComponent(projectileEntity, position);
                     }
                 }).Schedule();
