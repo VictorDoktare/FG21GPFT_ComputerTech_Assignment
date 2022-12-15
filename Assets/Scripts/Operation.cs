@@ -1,6 +1,7 @@
 using Components;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = Unity.Mathematics.Random;
 
 public readonly struct Operation
 {
