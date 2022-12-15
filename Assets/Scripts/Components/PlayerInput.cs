@@ -1,13 +1,12 @@
 using Unity.Entities;
-using Unity.Mathematics;
+using UnityEngine;
 
 namespace Components
 {
-    [GenerateAuthoringComponent]
     public struct PlayerInput : IComponentData
     {
-        public float3 MouseInput;
-        public float2 MoveInput;
+        public Vector2 MouseInput;
+        public Vector2 MoveInput;
         public bool FireInput;
     }
 }

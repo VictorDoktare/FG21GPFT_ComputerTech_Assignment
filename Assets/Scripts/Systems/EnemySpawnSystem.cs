@@ -72,7 +72,7 @@ namespace Systems
                                 yPos = randPos.NextFloat(-1f*(settings.LevelHeight/2)-4, (settings.LevelHeight/2)+4);
                                 break;
                         }
-
+                        
                         var position = new Translation{Value = new float3(xPos,yPos,0)};
                         var projectileEntity = commandBuffer.Instantiate(projectilePrefab);
                         commandBuffer.SetComponent(projectileEntity, position);

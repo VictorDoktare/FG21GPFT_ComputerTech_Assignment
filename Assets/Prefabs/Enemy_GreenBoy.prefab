@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6552358714528185545}
   - component: {fileID: 6133811657785625862}
   - component: {fileID: 2617978072432617266}
+  - component: {fileID: 5869319527630263715}
   m_Layer: 0
   m_Name: Enemy_GreenBoy
   m_TagString: Untagged
@@ -97,3 +98,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea34dbcf768f1746a00a9b07e036dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5869319527630263715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552358714528185546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c945c76de8f4d4180f9e51c27d90be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 4854631696936042785}
   - component: {fileID: 5746398917648802446}
   - component: {fileID: 5309885778611056353}
-  - component: {fileID: 5584900507656592579}
-  - component: {fileID: 4854631696227321161}
-  - component: {fileID: -1312937279469753404}
-  - component: {fileID: 4453314928206102838}
+  - component: {fileID: 3409869007074875276}
+  - component: {fileID: 4914668330638424816}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -102,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee67596ffcb4eb040b40790f43156b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5584900507656592579
+--- !u!114 &3409869007074875276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,18 +109,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4854631696936042787}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d03fc8b05e9bc5a4385ac0a945530035, type: 3}
+  m_Script: {fileID: 11500000, guid: 72f7672beefd89947b1c396f5e3ef2fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseInput:
-    x: 0
-    y: 0
-    z: 0
-  MoveInput:
-    x: 0
-    y: 0
-  FireInput: 0
---- !u!114 &4854631696227321161
+--- !u!114 &4914668330638424816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,45 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4854631696936042787}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10843c34bafc79e4fb95531a0da58cdd, type: 3}
+  m_Script: {fileID: 11500000, guid: 12c945c76de8f4d4180f9e51c27d90be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2
-  Direction:
-    x: 0
-    y: 0
---- !u!114 &-1312937279469753404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4854631696936042787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31579977474d065408ede39e57e6063a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ProjectileSpawnPos:
-    x: 0
-    y: 0
-    z: 0
-  NumberOfProjectiles: 5
-  ProjectileSpreadRadius: 1
-  FireRate: 2
---- !u!114 &4453314928206102838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4854631696936042787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa64eb98c427cc47b12f6f3ffe80fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Value: 1
+  speed: 1
 --- !u!1 &7088365597227882963
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,12 +1,11 @@
 using Unity.Entities;
-using Unity.Mathematics;
+using UnityEngine;
 
 namespace Components
 {
-    [GenerateAuthoringComponent]
     public struct Velocity : IComponentData
     {
-        public float Speed;
-        public float2 Direction;
+        public int Speed;
+        public Vector2 Direction;
     }
 }

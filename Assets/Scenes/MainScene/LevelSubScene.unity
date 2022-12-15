@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelHeight: 8
   levelWidth: 15
-  enemiesToSpawn: 5000
+  enemiesToSpawn: 1
 --- !u!4 &172436474
 Transform:
   m_ObjectHideFlags: 0
