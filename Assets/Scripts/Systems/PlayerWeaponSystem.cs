@@ -24,7 +24,7 @@ namespace Systems
                 .WithoutBurst()
                 .WithAll<PlayerTag>()
                 .ForEach((int entityInQueryIndex, ref Weapon weapon, ref Timer timer, in PlayerInput playerInput,
-                    in LocalToWorld localToWorld, in PrefabEntityReference prefabEntity) =>
+                    in LocalToWorld localToWorld, in PrefabEnemy prefabEntity) =>
                 {
 
                     //Spawn projectiles based on a time delay
@@ -38,7 +38,7 @@ namespace Systems
                         for (int i = 0; i < weapon.NumberOfProjectiles - 1; i++)
                         {
                             //Instantiate projectile entity
-                            var newProjectileEntity = beginSimECB.Instantiate(entityInQueryIndex, prefabEntity.Ref);
+                            var newProjectileEntity = beginSimECB.Instantiate(entityInQueryIndex, prefabEntity.Reference);
                             
                             beginSimECB.SetComponent(entityInQueryIndex, newProjectileEntity, spawnPos);
                             beginSimECB.SetComponent(entityInQueryIndex, newProjectileEntity, spawnRot);
