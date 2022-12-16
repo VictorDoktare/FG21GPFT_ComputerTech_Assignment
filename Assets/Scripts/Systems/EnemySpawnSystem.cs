@@ -80,8 +80,8 @@ namespace Systems
                             }
                             
                             var position = new Translation{Value = new float3(xPos,yPos,0)};
-                            var projectileEntity = commandBuffer.Instantiate(entityInQueryIndex, enemyPrefab);
-                            commandBuffer.SetComponent(entityInQueryIndex, projectileEntity, position);
+                            var enemyEntity = commandBuffer.Instantiate(entityInQueryIndex, enemyPrefab);
+                            commandBuffer.SetComponent(entityInQueryIndex, enemyEntity, position);
                         }
                         
                         //reset timer and double next wave of enemies

@@ -43,8 +43,6 @@ namespace Systems
                         velocity.Direction.y,
                         velocity.Direction.z) * velocity.Speed * deltaTime;
 
-                    var test = math.distance(localToWorld.Position, translation.Value);
-
                     lifeTime.age += deltaTime;
                     if (lifeTime.age > lifeTime.maxAge)
                     {

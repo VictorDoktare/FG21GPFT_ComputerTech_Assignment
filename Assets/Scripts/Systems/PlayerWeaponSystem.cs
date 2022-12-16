@@ -52,7 +52,7 @@ public partial class PlayerWeaponSystem : SystemBase
 
                     weapon.FireDelay = 1;
                 }
-            }).Run();
+            }).ScheduleParallel();
         
         _beginSimECB.AddJobHandleForProducer(Dependency);
     }

@@ -20,7 +20,7 @@ namespace Systems
                 playerInput.MoveInput = moveInput;
                 playerInput.FireInput = fireInput;
                 
-            }).Schedule();
+            }).ScheduleParallel();
         }
     }
 }
