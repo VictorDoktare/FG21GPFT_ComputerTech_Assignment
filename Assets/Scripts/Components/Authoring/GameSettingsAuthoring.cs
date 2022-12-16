@@ -20,7 +20,7 @@ namespace Components.Authoring
             gameSettings.LevelHeight = levelHeight;
             gameSettings.LevelWidth = levelWidth;
             gameSettings.EnemiesToSpawn = enemiesToSpawn;
-            gameSettings.SpawnTimer = 5;
+            gameSettings.SpawnTimer = 0;
 
             dstManager.AddComponentData(entity, gameSettings);
         }

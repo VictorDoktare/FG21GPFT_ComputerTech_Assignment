@@ -51,7 +51,7 @@ namespace Systems
                     settings.SpawnTimer -= deltaTime;
                     if (settings.SpawnTimer <= 0)
                     {
-                        for (int i = count; i < settings.EnemiesToSpawn; i++)
+                        for (int i = count; i < settings.EnemiesToSpawn -1 ; i++)
                         {
                             //Spawns enemies in a random position outside the play area.
                             var randomInt = randNumber.NextInt(4);
@@ -85,7 +85,7 @@ namespace Systems
                         }
                         
                         //reset timer and double next wave of enemies
-                        settings.SpawnTimer = 5;
+                        settings.SpawnTimer = 8;
                         settings.EnemiesToSpawn *= 2;
                     }
                 }).ScheduleParallel();
