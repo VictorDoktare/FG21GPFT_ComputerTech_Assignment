@@ -13,7 +13,15 @@ The game needs to be programmed in a data-oriented way with the hardware in mind
 - Use algorithms and loops that are smartly done and minimize negative impact in the user experience when employed at scale.
 - Reuse software effectively and contain original code that is easy to understand and used by others.
 
-## Component & Data layout
+## Build Download
+You can find the build [HERE](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/GameExec.rar)   
+
+Movement controlls are W,A,S,D.   
+Shoot & aim with MOUSE.
+
+Disclaimer: There is no collision.
+
+## Component & Data
 This is an short overview on how i have structured my project. Now in hindsight i think one of the main issues i had is to
 get away from an OOP mindset.
 
@@ -25,13 +33,13 @@ The custom authoring was used on components that i felt would needed more contro
 to make them able to set data in the editor.
 
 Using [GenerateAuthoringComponent] attribute:
-- PrefabPlayer.cs
-- PrefabEnemy.cs
-- PrefabProjectile.cs
+- [PrefabPlayer.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Components/PrefabPlayer.cs)
+- [PrefabEnemy.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Components/PrefabEnemy.cs)
+- [PrefabProjectile.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Components/PrefabProjectile.cs)
 
 Using custom authoring:
-- GameSettings using GameSettingsAuthoring.cs
-- PlayerInput using PlayerInputAuthoring.cs
-- Velocity using VelocityAuthoring.cs
-- Weapon using WeaponAuthoring.cs
-- Lifetime using LifetimeAuthoring.cs
+- GameSettings using [GameSettingsAuthoring.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Components/Authoring/GameSettingsAuthoring.cs)
+- PlayerInput using [PlayerInputAuthoring.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Components/Authoring/PlayerInputAuthoring.cs)
+- Velocity using [VelocityAuthoring.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Components/Authoring/VelocityAuthoring.cs)
+- Weapon using [WeaponAuthoring.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Components/Authoring/WeaponAuthoring.cs)
+- Lifetime using [LifetimeAuthoring.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Components/Authoring/LifetimeAuthoring.cs)
