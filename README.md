@@ -13,11 +13,25 @@ The game needs to be programmed in a data-oriented way with the hardware in mind
 - Use algorithms and loops that are smartly done and minimize negative impact in the user experience when employed at scale.
 - Reuse software effectively and contain original code that is easy to understand and used by others.
 
-## First data draft
-This is my first rough draft on how i will try to structure data. It's not perfect and will probalby change during the process.   
-However, this gives me an initial idea with a good overview of the project.
-I got this template idea from reading [Unity Learns DOTS](https://learn.unity.com/course/dots-best-practices?uv=2021.3) in a section about [Data Design](https://learn.unity.com/tutorial/part-2-data-design?uv=2021.3&courseId=60132919edbc2a56f9d439c3#62ab1c2eedbc2a7009eb3f0a).
+## Component & Data layout
+This is an short overview on how i have structured my project. Now in hindsight i think one of the main issues i had is to
+get away from an OOP mindset.
 
-![FirstDraft_DataComponents](https://user-images.githubusercontent.com/85444462/206464387-12a968e6-3910-4105-82a3-7053ac04e05e.png)
+![Component Systems](https://user-images.githubusercontent.com/85444462/208070702-b8b0d048-b12c-4fb8-968a-a2687a06b095.png)
 
-![FirstDraft_DataTransforms](https://user-images.githubusercontent.com/85444462/206465034-ef25ff42-23f1-47b0-8271-08bc573eb0bb.png)
+## Data Authoring
+I used a mix of custom authoring scripts & using the [[GenerateAuthoringComponent]](https://docs.unity3d.com/Packages/com.unity.entities@0.51/manual/gp_overview.html) attribute for my components.   
+The custom authoring was used on components that i felt would needed more controll, especially if this was a collab project with other people it is a nice touch
+to make them able to set data in the editor.
+
+Using [GenerateAuthoringComponent] attribute:
+- PrefabPlayer.cs
+- PrefabEnemy.cs
+- PrefabProjectile.cs
+
+Using custom authoring:
+- GameSettings using GameSettingsAuthoring.cs
+- PlayerInput using PlayerInputAuthoring.cs
+- Velocity using VelocityAuthoring.cs
+- Weapon using WeaponAuthoring.cs
+- Lifetime using LifetimeAuthoring.cs
