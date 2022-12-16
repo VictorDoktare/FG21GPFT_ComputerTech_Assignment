@@ -29,7 +29,7 @@ Every system has .WithBurst() on by default and i run them on ScheduleParallel()
 
 ![Component Systems](https://user-images.githubusercontent.com/85444462/208070702-b8b0d048-b12c-4fb8-968a-a2687a06b095.png)
 
-I opted in for using Vector2 & Vector3 instead of float2 & float3 even thous i realize for performance it's probalby better to use floats.
+I opted in for using Vector2 & Vector3 instead of float2 & float3 even thou i realize for performance it's probably better to use floats.
 the reason was simply for convenience since a lot of Unitys stuff is based on Vectors.
 
 ## Data Authoring
