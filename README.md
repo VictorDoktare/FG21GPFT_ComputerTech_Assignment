@@ -50,10 +50,10 @@ Using custom authoring:
 - [Lifetime.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Components/Lifetime.cs) using [LifetimeAuthoring.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Components/Authoring/LifetimeAuthoring.cs)
 
 ## Systems
-[PlayerInputSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/PlayerInputSystem.cs)   
-[PlayerMovementSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/PlayerMovementSystem.cs)   
-[PlayerWeaponSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/PlayerWeaponSystem.cs)   
-[EnemySpawnSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/EnemySpawnSystem.cs)   
-[EnemyMovementSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/EnemyMovementSystem.cs)   
-[ProjectileMovementSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/ProjectileMovementSystem.cs)
+- [PlayerInputSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/PlayerInputSystem.cs)   
+- [PlayerMovementSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/PlayerMovementSystem.cs)   
+- [PlayerWeaponSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/PlayerWeaponSystem.cs)   
+- [EnemySpawnSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/EnemySpawnSystem.cs)   
+- [EnemyMovementSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/EnemyMovementSystem.cs)   
+- [ProjectileMovementSystem.cs](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/Assets/Scripts/Systems/ProjectileMovementSystem.cs)
 
