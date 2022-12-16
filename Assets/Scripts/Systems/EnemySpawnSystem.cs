@@ -1,73 +1,96 @@
+using System.Diagnostics;
 using Components;
+using Components.Tags;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using Random = UnityEngine.Random;
+using Random = Unity.Mathematics.Random;
 
 namespace Systems
 {
     public partial class EnemySpawnSystem : SystemBase
     {
         private BeginSimulationEntityCommandBufferSystem _beginSimECB;
-        private Entity _enemy;
-        private float _startTime = 2f;
-        private float _spawnTimer = 2f;
+        private EntityQuery _enemyQuery;
+        private EntityQuery _gameSettingsQuery;
+        private Entity _prefab;
 
         protected override void OnCreate()
         {
             _beginSimECB = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
+            _enemyQuery = GetEntityQuery(ComponentType.ReadWrite<EnemyTag>());
+            _gameSettingsQuery = GetEntityQuery(ComponentType.ReadWrite<GameSettings>());
+
+            //Do not go to update unless conversion is complete.
+            RequireForUpdate(_gameSettingsQuery);
         }
-        
-        
+
         protected override void OnUpdate()
         {
-            var deltaTime = Time.DeltaTime;
-            
-            if (_enemy.Equals(Entity.Null))
+            if (_prefab.Equals(Entity.Null))
             {
-                _enemy = GetSingleton<EnemyPrefab>().Value;
+                _prefab = GetSingleton<PrefabEnemy>().Reference;
                 return;
             }
             
+            var count = _enemyQuery.CalculateEntityCountWithoutFiltering();
+            var randPos = new Random((uint)Stopwatch.GetTimestamp());
+            var randNumber = new Random((uint)Stopwatch.GetTimestamp());
             var commandBuffer = _beginSimECB.CreateCommandBuffer().AsParallelWriter();
-            var enemy = _enemy;
-            var setPos = new Translation() { Value = new float3(0, 10, 0)};
+            var enemyPrefab = _prefab;
+            var deltaTime = Time.DeltaTime;
 
-            //Faster spawn the longer game proceeds
-            if (_startTime >= 0.2)
-            {
-                _startTime -= deltaTime * 0.01f;
-            }
-            
-            _spawnTimer -= deltaTime * 1f;
-            
-            //var randomPos = Random.Range(-2, 3);
-            //var randomSpawnAmount = Random.Range(1, 5);
-            
-            //setPos.Value.x -= randomPos;
-            
-            if (_spawnTimer <= 0)
-            {
-                var randomSpawnAmount = Random.Range(1, 5);
+            float xPos = 0, yPos = 0;
 
-                for (int i = 0; i < randomSpawnAmount; i++)
-                {
-                    var randomPos = Random.Range(-2, 2);
+            Entities
+                .ForEach((
+                    int entityInQueryIndex,
+                    ref GameSettings settings) => {
                     
-                    Entities
-                        .WithAll<EnemySpawnerTag>()
-                        .ForEach((int entityInQueryIndex, in Translation translation) =>
+                    var padding = 1;
+                    settings.SpawnTimer -= deltaTime;
+                    if (settings.SpawnTimer <= 0)
+                    {
+                        for (int i = count; i < settings.EnemiesToSpawn -1 ; i++)
                         {
-                            setPos.Value.x = randomPos;
-                            var spawnedEnemyEntity = commandBuffer.Instantiate(entityInQueryIndex, enemy);
-                            commandBuffer.SetComponent(entityInQueryIndex, spawnedEnemyEntity, setPos);
+                            //Spawns enemies in a random position outside the play area.
+                            var randomInt = randNumber.NextInt(4);
+                            switch (randomInt)
+                            {
+                                case 0:
+                                    //Spawns enemies outside game area on positive Y.
+                                    xPos = randPos.NextFloat(-1f*(settings.LevelWidth/2)-2, settings.LevelWidth/2)+1;
+                                    yPos = randPos.NextFloat(settings.LevelHeight/2 + 4, settings.LevelHeight/2 + padding);
+                                    break;
+                                case 1:
+                                    //Spawns enemies outside game area on negative Y.
+                                    xPos = randPos.NextFloat(-1f*(settings.LevelWidth/2)-2, settings.LevelWidth/2)+1;
+                                    yPos = -randPos.NextFloat(settings.LevelHeight/2 + 4, settings.LevelHeight/2 + padding);
+                                    break;
+                                case 2:
+                                    //Spawns enemies outside game area on positive X.
+                                    xPos = randPos.NextFloat(settings.LevelWidth/2 + 4, settings.LevelWidth/2 + padding);
+                                    yPos = randPos.NextFloat(-1f*(settings.LevelHeight/2)-4, (settings.LevelHeight/2)+4);
+                                    break;
+                                case 3:
+                                    //Spawns enemies outside game area on negative X.
+                                    xPos = -randPos.NextFloat(settings.LevelWidth/2 + 4, settings.LevelWidth/2 + padding);
+                                    yPos = randPos.NextFloat(-1f*(settings.LevelHeight/2)-4, (settings.LevelHeight/2)+4);
+                                    break;
+                            }
                             
-                        }).ScheduleParallel();
-   
-                }
-                _spawnTimer = _startTime;
-                _beginSimECB.AddJobHandleForProducer(Dependency);
-            }
+                            var position = new Translation{Value = new float3(xPos,yPos,0)};
+                            var enemyEntity = commandBuffer.Instantiate(entityInQueryIndex, enemyPrefab);
+                            commandBuffer.SetComponent(entityInQueryIndex, enemyEntity, position);
+                        }
+                        
+                        //reset timer and double next wave of enemies
+                        settings.SpawnTimer = 8;
+                        settings.EnemiesToSpawn *= 2;
+                    }
+                }).ScheduleParallel();
+            
+            _beginSimECB.AddJobHandleForProducer(Dependency);
         }
     }
 }

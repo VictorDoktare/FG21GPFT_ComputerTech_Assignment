@@ -1,41 +1,56 @@
 using Components;
-using Components.ComponentTags;
+using Components.Tags;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
+
 
 namespace Systems
 {
     public partial class ProjectileMovementSystem : SystemBase
     {
-        private EndSimulationEntityCommandBufferSystem _endSimECB;
+        private BeginSimulationEntityCommandBufferSystem _beginSimECB;
 
         protected override void OnCreate()
         {
-            _endSimECB = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+            _beginSimECB = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
         }
-
+        
         protected override void OnUpdate()
         {
-            var commandBuffer = _endSimECB.CreateCommandBuffer().AsParallelWriter();
+            var commandBuffer = _beginSimECB.CreateCommandBuffer().AsParallelWriter();
             var deltaTime = Time.DeltaTime;
-        
-            Entities
-               .WithAll<ProjectileTag>()
-               .ForEach((ref Translation translation, in Direction direction, in Speed speed,
-                   in Entity entity) =>
-               {
-                   //Velocity
-                   translation.Value.y += direction.Value.y +1 * speed.Value * deltaTime;
 
-                   //Lazy way to destroy projectile when outside of bounds
-                   if (translation.Value.y >= 10)
-                   {
-                       commandBuffer.DestroyEntity(1, entity);
-                   }
-                   
-               }).ScheduleParallel();
-            
-            _endSimECB.AddJobHandleForProducer(Dependency);
+            Entities
+                .WithAll<ProjectileTag>()
+                .ForEach((
+                    Entity entity,
+                    int entityInQueryIndex,
+                    ref Translation translation,
+                    ref Velocity velocity,
+                    ref Lifetime lifeTime,
+                    in LocalToWorld localToWorld) => {
+                    
+                    //Move projectile in forward facing direction
+                    velocity.Direction = new Vector3(
+                        localToWorld.Up.x,
+                        localToWorld.Up.y,
+                        localToWorld.Up.z).normalized;
+                    
+                    translation.Value.xyz += new float3(
+                        velocity.Direction.x,
+                        velocity.Direction.y,
+                        velocity.Direction.z) * velocity.Speed * deltaTime;
+
+                    lifeTime.age += deltaTime;
+                    if (lifeTime.age > lifeTime.maxAge)
+                    {
+                        commandBuffer.DestroyEntity(entityInQueryIndex, entity);
+                    }
+
+                }).ScheduleParallel();
+            _beginSimECB.AddJobHandleForProducer(Dependency);
         }
     }
 }

@@ -1,51 +1,43 @@
 using Components;
-using Components.ComponentTags;
+using Components.Tags;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
 namespace Systems
 {
-    
     public partial class EnemyMovementSystem : SystemBase
     {
-        private EndSimulationEntityCommandBufferSystem _endSimECB;
-        
-        protected override void OnCreate()
-        {
-            _endSimECB = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
-        }
+        private Entity _prefab;
         
         protected override void OnUpdate()
         {
-            var commandBuffer = _endSimECB.CreateCommandBuffer().AsParallelWriter();
+            if (_prefab.Equals(Entity.Null))
+            {
+                _prefab = GetSingleton<PrefabPlayer>().Reference;
+                return;
+            }
+            
             var deltaTime = Time.DeltaTime;
-            var time = UnityEngine.Time.time;
-        
+            var playerEntity = _prefab;
+            var playerPos = EntityManager.GetComponentData<LocalToWorld>(playerEntity);
+
             Entities
                 .WithAll<EnemyTag>()
-                .ForEach((ref Direction direction, ref Translation translation, in Speed speed,
-                    in MovePattern movePattern, in Entity entity) =>
+                .ForEach((
+                    ref Translation translation,
+                    ref Velocity velocity,
+                    in LocalToWorld localToWorld) =>
                 {
-                    //Movement patterns & Velocity
-                    if (movePattern.Pattern == MovePattern.Patterns.Wave)
-                    {
-                        direction.Value.x = Mathf.Cos(time * (speed.Value * movePattern.Frequency));
-                        translation.Value.x += (direction.Value.x * speed.Value * deltaTime);
-                    }
+                    //Move enemy towards player
+                    velocity.Direction = Vector3.Normalize(playerPos.Position - localToWorld.Position); 
+                    translation.Value += new float3(
+                        velocity.Direction.x,
+                        velocity.Direction.y,
+                        velocity.Direction.z) * velocity.Speed * deltaTime;
                     
-                    translation.Value.y += direction.Value.y * speed.Value * deltaTime;
-                    
-                    //Lazy way to destroy enemy when outside of bounds
-                    if (translation.Value.y <= -1)
-                    {
-                        commandBuffer.DestroyEntity(0, entity);
-                        return;
-                    }
-
                 }).ScheduleParallel();
-            
-            _endSimECB.AddJobHandleForProducer(Dependency);
         }
     }
 }
