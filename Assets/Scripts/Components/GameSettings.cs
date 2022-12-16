@@ -7,5 +7,6 @@ namespace Components
         public float LevelWidth;
         public float LevelHeight;
         public int EnemiesToSpawn;
+        public float SpawnTimer;
     }
 }

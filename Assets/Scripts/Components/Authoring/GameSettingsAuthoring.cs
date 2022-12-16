@@ -12,6 +12,7 @@ namespace Components.Authoring
         [Header("Enemy Settings")]
         [Range(0, 1048576)][SerializeField] private int enemiesToSpawn = 1;
 
+
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             var gameSettings = default(GameSettings);
@@ -19,6 +20,7 @@ namespace Components.Authoring
             gameSettings.LevelHeight = levelHeight;
             gameSettings.LevelWidth = levelWidth;
             gameSettings.EnemiesToSpawn = enemiesToSpawn;
+            gameSettings.SpawnTimer = 5;
 
             dstManager.AddComponentData(entity, gameSettings);
         }

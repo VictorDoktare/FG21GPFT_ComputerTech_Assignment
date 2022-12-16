@@ -11,7 +11,7 @@ namespace Systems
     public partial class ProjectileMovementSystem : SystemBase
     {
         private BeginSimulationEntityCommandBufferSystem _beginSimECB;
-        
+
         protected override void OnCreate()
         {
             _beginSimECB = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
@@ -21,7 +21,7 @@ namespace Systems
         {
             var commandBuffer = _beginSimECB.CreateCommandBuffer().AsParallelWriter();
             var deltaTime = Time.DeltaTime;
-            
+
             Entities
                 .WithAll<ProjectileTag>()
                 .ForEach((
@@ -42,6 +42,8 @@ namespace Systems
                         velocity.Direction.x,
                         velocity.Direction.y,
                         velocity.Direction.z) * velocity.Speed * deltaTime;
+
+                    var test = math.distance(localToWorld.Position, translation.Value);
 
                     lifeTime.age += deltaTime;
                     if (lifeTime.age > lifeTime.maxAge)

@@ -36,48 +36,59 @@ namespace Systems
             var count = _enemyQuery.CalculateEntityCountWithoutFiltering();
             var randPos = new Random((uint)Stopwatch.GetTimestamp());
             var randNumber = new Random((uint)Stopwatch.GetTimestamp());
-            var commandBuffer = _beginSimECB.CreateCommandBuffer();
-            var settings = GetSingleton<GameSettings>();
+            var commandBuffer = _beginSimECB.CreateCommandBuffer().AsParallelWriter();
             var enemyPrefab = _prefab;
+            var deltaTime = Time.DeltaTime;
+
             float xPos = 0, yPos = 0;
 
-            Job
-                .WithCode(() => {
-                    for (int i = count; i < settings.EnemiesToSpawn; i++)
+            Entities
+                .ForEach((
+                    int entityInQueryIndex,
+                    ref GameSettings settings) => {
+                    
+                    var padding = 1;
+                    settings.SpawnTimer -= deltaTime;
+                    if (settings.SpawnTimer <= 0)
                     {
-                        //Spawns enemies in a random position outside the play area.
-                        var padding = 1;
-
-                        var randomInt = randNumber.NextInt(4);
-                        switch (randomInt)
+                        for (int i = count; i < settings.EnemiesToSpawn; i++)
                         {
-                            case 0:
-                                //Spawns enemies outside game area on positive Y.
-                                xPos = randPos.NextFloat(-1f*(settings.LevelWidth/2)-2, settings.LevelWidth/2)+1;
-                                yPos = randPos.NextFloat(settings.LevelHeight/2 + 4, settings.LevelHeight/2 + padding);
-                                break;
-                            case 1:
-                                //Spawns enemies outside game area on negative Y.
-                                xPos = randPos.NextFloat(-1f*(settings.LevelWidth/2)-2, settings.LevelWidth/2)+1;
-                                yPos = -randPos.NextFloat(settings.LevelHeight/2 + 4, settings.LevelHeight/2 + padding);
-                                break;
-                            case 2:
-                                //Spawns enemies outside game area on positive X.
-                                xPos = randPos.NextFloat(settings.LevelWidth/2 + 4, settings.LevelWidth/2 + padding);
-                                yPos = randPos.NextFloat(-1f*(settings.LevelHeight/2)-4, (settings.LevelHeight/2)+4);
-                                break;
-                            case 3:
-                                //Spawns enemies outside game area on negative X.
-                                xPos = -randPos.NextFloat(settings.LevelWidth/2 + 4, settings.LevelWidth/2 + padding);
-                                yPos = randPos.NextFloat(-1f*(settings.LevelHeight/2)-4, (settings.LevelHeight/2)+4);
-                                break;
+                            //Spawns enemies in a random position outside the play area.
+                            var randomInt = randNumber.NextInt(4);
+                            switch (randomInt)
+                            {
+                                case 0:
+                                    //Spawns enemies outside game area on positive Y.
+                                    xPos = randPos.NextFloat(-1f*(settings.LevelWidth/2)-2, settings.LevelWidth/2)+1;
+                                    yPos = randPos.NextFloat(settings.LevelHeight/2 + 4, settings.LevelHeight/2 + padding);
+                                    break;
+                                case 1:
+                                    //Spawns enemies outside game area on negative Y.
+                                    xPos = randPos.NextFloat(-1f*(settings.LevelWidth/2)-2, settings.LevelWidth/2)+1;
+                                    yPos = -randPos.NextFloat(settings.LevelHeight/2 + 4, settings.LevelHeight/2 + padding);
+                                    break;
+                                case 2:
+                                    //Spawns enemies outside game area on positive X.
+                                    xPos = randPos.NextFloat(settings.LevelWidth/2 + 4, settings.LevelWidth/2 + padding);
+                                    yPos = randPos.NextFloat(-1f*(settings.LevelHeight/2)-4, (settings.LevelHeight/2)+4);
+                                    break;
+                                case 3:
+                                    //Spawns enemies outside game area on negative X.
+                                    xPos = -randPos.NextFloat(settings.LevelWidth/2 + 4, settings.LevelWidth/2 + padding);
+                                    yPos = randPos.NextFloat(-1f*(settings.LevelHeight/2)-4, (settings.LevelHeight/2)+4);
+                                    break;
+                            }
+                            
+                            var position = new Translation{Value = new float3(xPos,yPos,0)};
+                            var projectileEntity = commandBuffer.Instantiate(entityInQueryIndex, enemyPrefab);
+                            commandBuffer.SetComponent(entityInQueryIndex, projectileEntity, position);
                         }
                         
-                        var position = new Translation{Value = new float3(xPos,yPos,0)};
-                        var projectileEntity = commandBuffer.Instantiate(enemyPrefab);
-                        commandBuffer.SetComponent(projectileEntity, position);
+                        //reset timer and double next wave of enemies
+                        settings.SpawnTimer = 5;
+                        settings.EnemiesToSpawn *= 2;
                     }
-                }).Schedule();
+                }).ScheduleParallel();
             
             _beginSimECB.AddJobHandleForProducer(Dependency);
         }

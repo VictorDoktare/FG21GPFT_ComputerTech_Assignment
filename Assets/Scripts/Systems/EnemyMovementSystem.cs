@@ -25,7 +25,10 @@ namespace Systems
 
             Entities
                 .WithAll<EnemyTag>()
-                .ForEach((ref Translation translation, ref Velocity velocity, in LocalToWorld localToWorld) =>
+                .ForEach((
+                    ref Translation translation,
+                    ref Velocity velocity,
+                    in LocalToWorld localToWorld) =>
                 {
                     //Move enemy towards player
                     velocity.Direction = Vector3.Normalize(playerPos.Position - localToWorld.Position); 
