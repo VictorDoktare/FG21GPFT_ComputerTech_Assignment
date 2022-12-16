@@ -29,7 +29,6 @@ public partial class PlayerWeaponSystem : SystemBase
         var projectilePrefab = _prefab;
 
         Entities
-            .WithoutBurst()
             .WithAll<PlayerTag>()
             .ForEach((
                 int entityInQueryIndex,
