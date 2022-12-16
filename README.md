@@ -21,9 +21,11 @@ Shoot & aim with MOUSE.
 
 Disclaimer: There is no collision.
 
-## Component & Data
+## Component & Systems
 This is an short overview on how i have structured my project. Now in hindsight i think one of the main issues i had is to
 get away from an OOP mindset.
+
+Every system has .WithBurst() on by default and i run them on ScheduleParallel() to be more effecient.
 
 ![Component Systems](https://user-images.githubusercontent.com/85444462/208070702-b8b0d048-b12c-4fb8-968a-a2687a06b095.png)
 
