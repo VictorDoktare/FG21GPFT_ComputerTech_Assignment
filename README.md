@@ -14,7 +14,7 @@ The game needs to be programmed in a data-oriented way with the hardware in mind
 - Reuse software effectively and contain original code that is easy to understand and used by others.
 
 ## Build Download
-You can find the build [HERE](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/GameExec.rar)   
+You can find the build [HERE](https://github.com/VictorDoktare/FG21GPFT_ComputerTech_Assignment/blob/main/BuildExec.rar)   
 
 Movement controlls are W,A,S,D.   
 Shoot & aim with MOUSE.
