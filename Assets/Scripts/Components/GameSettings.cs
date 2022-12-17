@@ -8,5 +8,6 @@ namespace Components
         public float LevelHeight;
         public int EnemiesToSpawn;
         public float SpawnTimer;
+        public float SpawnCountLimit;
     }
 }

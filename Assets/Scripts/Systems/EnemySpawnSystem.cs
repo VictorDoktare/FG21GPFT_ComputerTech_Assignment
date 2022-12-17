@@ -49,7 +49,7 @@ namespace Systems
                     
                     var padding = 1;
                     settings.SpawnTimer -= deltaTime;
-                    if (settings.SpawnTimer <= 0)
+                    if (settings is { SpawnTimer: <= 0, SpawnCountLimit: <= 10 })
                     {
                         for (int i = count; i < settings.EnemiesToSpawn -1 ; i++)
                         {
@@ -86,6 +86,7 @@ namespace Systems
                         
                         //reset timer and double next wave of enemies
                         settings.SpawnTimer = 8;
+                        settings.SpawnCountLimit++;
                         settings.EnemiesToSpawn *= 2;
                     }
                 }).ScheduleParallel();
