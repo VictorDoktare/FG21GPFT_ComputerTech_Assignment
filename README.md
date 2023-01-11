@@ -1,4 +1,4 @@
-# FG21GPFT_ComputerTech_Assignment
+# FG21_SchoolAssignment - Computer Tech
 Performance-aware space shooter using Unity DOTS
 
 ## Assignment brief
